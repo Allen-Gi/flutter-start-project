@@ -11,63 +11,115 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    // 상태 바와 네비게이션 바의 색상을 설정합니다.
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-      statusBarColor: Colors.blue, // 상태 바 색상
-      systemNavigationBarColor: Colors.blue, // 네비게이션 바 색상
-    ));
+    var _selectedIndex = 0;
+
+    void _onItemTapped(int index) {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
 
     return SafeArea(
       child: Scaffold(
-          backgroundColor: Colors.blue,
-          appBar: AppBar(
-            backgroundColor: Colors.blue,
-            title: const Center(
-                child: Text(
-              'Home',
-              // title color
-              style: TextStyle(color: Colors.white),
-            )),
-            leading: IconButton(
-              icon: const Icon(Icons.menu),
-              color: Colors.white,
+        appBar: AppBar(
+          title: const Center(
+              child: Text(
+            'Home',
+            // title color
+            style: TextStyle(color: Colors.white),
+          )),
+          leading: IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {},
+          ),
+          actions: [
+            IconButton(
+              icon: const Icon(Icons.home_outlined),
               onPressed: () {},
             ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.home_outlined),
-                color: Colors.white,
-                onPressed: () {},
-              ),
-            ],
-          ),
-          body: const Column(
-            children: [
-              Row(
+          ],
+        ),
+        body: const Column(
+          children: [
+            Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text('주요 뉴스',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold)),
+                ),
+              ],
+            ),
+            Row(
+              //center row contents horizontally,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.home_outlined,
+                ),
+                SizedBox(width: 10),
+                Center(
+                  child: Text('Home Screen', style: TextStyle(fontSize: 30)),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Row(
                 children: [
-                  Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Text('주요 뉴스',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold)),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(20.0),
+                            child: Text('주요 뉴스',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold)),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 1200),
+                      Row(
+                        //center row contents horizontally,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.home_outlined),
+                          SizedBox(width: 10),
+                          Center(
+                            child: Text('Home Screen',
+                                style: TextStyle(fontSize: 30)),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
                 ],
               ),
-              Row(
-                //center row contents horizontally,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.home_outlined, color: Colors.white),
-                  SizedBox(width: 10),
-                  Center(
-                    child: Text('Home Screen', style: TextStyle(fontSize: 30)),
-                  ),
-                ],
-              ),
-            ],
-          )),
+            ),
+          ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.business),
+              label: 'Business',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.school),
+              label: 'School',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          onTap: _onItemTapped,
+        ),
+      ),
     );
   }
 }
