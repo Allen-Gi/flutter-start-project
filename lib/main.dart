@@ -20,111 +20,50 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  late Future<Album> futureAlbum;
-
   @override
   void initState() {
     super.initState();
-    futureAlbum = fetchAlbum();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: GlobalVariables.appName,
-        debugShowCheckedModeBanner: false,
+      title: GlobalVariables.appName,
+      debugShowCheckedModeBanner: false,
 
-        // backgroundColor: Colors.deepPurple,
+      // backgroundColor: Colors.deepPurple,
 
-        theme: ThemeData(
-          scaffoldBackgroundColor: const Color.fromARGB(255, 58, 183, 137),
-          colorScheme: const ColorScheme.light(
-            primary: Color.fromARGB(255, 219, 147, 15),
-            secondary: Colors.deepPurple,
-          ),
-          appBarTheme: const AppBarTheme(
-            elevation: 8.0,
-            iconTheme: IconThemeData(color: Color.fromARGB(255, 255, 255, 255)),
-            backgroundColor: Color.fromARGB(255, 253, 87, 228),
-          ),
-          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            backgroundColor: Color.fromARGB(255, 253, 87, 228),
-            selectedItemColor: Color.fromARGB(255, 124, 145, 239),
-            unselectedItemColor: Color.fromARGB(255, 255, 255, 255),
-          ),
-          primarySwatch: Colors.deepPurple,
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white,
+        colorScheme: const ColorScheme.light(
+          primary: Color.fromARGB(247, 206, 206, 206),
+          secondary: Color.fromARGB(255, 211, 211, 211),
         ),
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Center(
-                child: Text(
-              'Home',
-              // title color
-              style: TextStyle(color: Colors.white),
-            )),
-            leading: IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () {},
-            ),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.home_outlined),
-                onPressed: () {},
-              ),
-            ],
+        appBarTheme: const AppBarTheme(
+          elevation: 8.0,
+          iconTheme: IconThemeData(color: Color.fromARGB(255, 0, 0, 0)),
+          backgroundColor: Color.fromARGB(247, 247, 247, 255),
+          titleTextStyle: TextStyle(
+            color: Color.fromARGB(255, 0, 0, 0),
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
           ),
-          body: Center(
-              child: FutureBuilder<Album>(
-            future: futureAlbum,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Column(
-                  children: [
-                    Text(snapshot.data!.title),
-                    const SizedBox(height: 10),
-                    Text(snapshot.data!.id.toString()),
-                    const SizedBox(height: 10),
-                    Text(snapshot.data!.userId.toString()),
-                  ],
-                );
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
-
-              // By default, show a loading spinner.
-              return const CircularProgressIndicator();
-            },
-          )),
-          bottomNavigationBar: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home_outlined),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                label: 'Search',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'Profile',
-              ),
-            ],
-            currentIndex: 0,
-            selectedItemColor: Colors.amber[800],
-            onTap: (index) {},
+        ),
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Color.fromARGB(247, 247, 247, 255),
+          selectedItemColor: Color.fromARGB(255, 19, 185, 94),
+          unselectedItemColor: Color.fromARGB(255, 94, 94, 94),
+          selectedLabelStyle: TextStyle(
+            fontSize: 12.0,
+            fontWeight: FontWeight.bold,
           ),
-        ));
-  }
-}
-
-Future<Album> fetchAlbum() async {
-  final response = await http
-      .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
-
-  if (response.statusCode == 200) {
-    return Album.fromJson(jsonDecode(response.body) as Map<String, dynamic>);
-  } else {
-    throw Exception('Failed to load album');
+          unselectedLabelStyle: TextStyle(
+            fontSize: 12.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      home: const HomeScreen(),
+    );
   }
 }

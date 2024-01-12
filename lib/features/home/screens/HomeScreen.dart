@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_start_project/constants/global_variables.dart';
+import 'package:flutter_start_project/features/home/screens/MessageItem.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,115 +11,80 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+  final ScrollController _firstController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
-    var _selectedIndex = 0;
-
-    void _onItemTapped(int index) {
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
-
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Center(
-              child: Text(
-            'Home',
-            // title color
-            style: TextStyle(color: Colors.white),
-          )),
-          leading: IconButton(
-            icon: const Icon(Icons.menu),
-            onPressed: () {},
-          ),
+          centerTitle: true,
+          title: const Text(GlobalVariables.appName),
           actions: [
             IconButton(
-              icon: const Icon(Icons.home_outlined),
+              icon: const Icon(Icons.search_outlined),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(Icons.add_circle_outline_rounded),
               onPressed: () {},
             ),
           ],
         ),
-        body: const Column(
-          children: [
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Text('주요 뉴스',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold)),
-                ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Scrollbar(
+            child: ListView(
+              children: const [
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明2', content: '你好', date: '2021-09-02'),
+                MessageItem(name: '小明3', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明4', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
+                MessageItem(name: '小明', content: '你好', date: '2021-09-01'),
               ],
             ),
-            Row(
-              //center row contents horizontally,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.home_outlined,
-                ),
-                SizedBox(width: 10),
-                Center(
-                  child: Text('Home Screen', style: TextStyle(fontSize: 30)),
-                ),
-              ],
-            ),
-            Expanded(
-              child: Row(
-                children: [
-                  Column(
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(20.0),
-                            child: Text('주요 뉴스',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold)),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 1200),
-                      Row(
-                        //center row contents horizontally,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.home_outlined),
-                          SizedBox(width: 10),
-                          Center(
-                            child: Text('Home Screen',
-                                style: TextStyle(fontSize: 30)),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
+          ),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          iconSize: 30.0,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
+              icon: Icon(Icons.home_outlined),
+              label: '微信',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              label: 'Business',
+              icon: Icon(Icons.group_outlined),
+              label: "通讯录",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.school),
-              label: 'School',
+              icon: Icon(Icons.location_city_outlined),
+              label: '发现',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_outline_rounded),
+              label: '我',
             ),
           ],
           currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
+          onTap: (int index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
         ),
       ),
     );

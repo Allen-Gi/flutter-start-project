@@ -1,5 +1,5 @@
 class GlobalVariables {
-  static const String appName = 'Flutter Starter';
+  static const String appName = '微信';
   static const String baseUrl = 'https://jsonplaceholder.typicode.com';
   static const String apiVersion = 'v1';
   static const String apiBaseUrl = '$baseUrl/$apiVersion';
