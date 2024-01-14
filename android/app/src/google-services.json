@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "306429636425",
+    "project_id": "nomadic-grid-199306",
+    "storage_bucket": "nomadic-grid-199306.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:306429636425:android:cf1e940bcdea110a37f498",
+        "android_client_info": {
+          "package_name": "flutter.sample.test"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "306429636425-itm1410382lg5fcu5t9c79t8o114b18q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrA-FaRLy3eTvDbjIoXBYcBEfGR9bVtjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "306429636425-itm1410382lg5fcu5t9c79t8o114b18q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

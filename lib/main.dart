@@ -1,8 +1,4 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_start_project/models/album.dart';
-import 'package:http/http.dart' as http;
 import 'package:flutter_start_project/features/home/screens/HomeScreen.dart';
 
 import 'constants/global_variables.dart';

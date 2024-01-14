@@ -22,7 +22,7 @@ class MessageItem extends StatelessWidget {
             padding: EdgeInsets.all(10.0),
             child: CircleAvatar(
               radius: 30.0,
-              backgroundImage: AssetImage('assets/images/avatar.png'),
+              backgroundImage: AssetImage('lib/images/Icon-192.png'),
             ),
           ),
           Expanded(

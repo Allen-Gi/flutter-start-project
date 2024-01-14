@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_start_project/constants/global_variables.dart';
 import 'package:flutter_start_project/features/home/screens/MessageItem.dart';
 
@@ -12,7 +11,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
-  final ScrollController _firstController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
